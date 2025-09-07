@@ -1,4 +1,4 @@
-# ✅ To Uninstall Flussonic on Ubuntu
+# ✅ To Uninstall Flussonic on Ubuntu  [![Hits](https://hits.sh/github.com/sohag1192/Flussonic-Uninstall-Update-License-Server-Blocking-Script.svg?view=today-total&style=for-the-badge&label=Views&color=d81adf&labelColor=ffcf32)](https://hits.sh/github.com/sohag1192/Flussonic-Uninstall-Update-License-Server-Blocking-Script/)
 You can run the script directly like this:
 
         curl -O "https://raw.githubusercontent.com/sohag1192/Flussonic-Uninstall-Update-License-Server-Blocking-Script/main/uninstall_flussonic.sh"
@@ -22,6 +22,10 @@ Here’s the official and fastest method
 
 Then open your browser and go to:
 http://localhost — this is the Flussonic web interface.
+
+🛠️💵 Active Flussonic License Key
+
+https://github.com/sohag1192/Flussonic-Media-Server?tab=readme-ov-file#active-flussonic-license-key-is-below
 
 
 # ✂️Block Flussonic.sh script to block Flussonic updates and license servers on both Ubuntu systems.
