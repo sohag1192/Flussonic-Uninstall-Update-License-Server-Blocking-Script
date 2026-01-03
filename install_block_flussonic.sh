@@ -1,12 +1,20 @@
 #!/bin/bash
-# Script to block Flussonic updates and license servers
-# Run as root or with sudo
+
+# Block Flussonic updates and license servers
+# Author: Copilot (clean LF version)
 
 echo "🔹 Blocking Flussonic package updates..."
-apt-mark hold flussonic flussonic-erlang flussonic-transcoder flussonic-transcoder-base flussonic-qsv
+for pkg in flussonic flussonic-erlang flussonic-transcoder flussonic-transcoder-base flussonic-qsv; do
+    if apt-cache show "$pkg" >/dev/null 2>&1; then
+        sudo apt-mark hold "$pkg"
+        echo "$pkg set on hold."
+    else
+        echo "Package $pkg not found, skipping..."
+    fi
+done
 
 echo "🔹 Backing up the hosts file..."
-cp /etc/hosts /etc/hosts.bak
+sudo cp /etc/hosts /etc/hosts.bak
 
 echo "🔹 Blocking Flussonic and Erlyvideo domains in /etc/hosts..."
 HOSTS_BLOCK=(
@@ -18,8 +26,12 @@ HOSTS_BLOCK=(
 )
 
 for host in "${HOSTS_BLOCK[@]}"; do
-    # Avoid duplicate entries
-    grep -qxF "127.0.0.1 $host" /etc/hosts || echo "127.0.0.1 $host" >> /etc/hosts
+    if ! grep -q "$host" /etc/hosts; then
+        echo "127.0.0.1 $host" | sudo tee -a /etc/hosts >/dev/null
+        echo "Blocked $host"
+    else
+        echo "$host already blocked"
+    fi
 done
 
-echo "✅ Flussonic updates and license servers have been successfully blocked."
+echo "✅ Flussonic blocking completed successfully."
