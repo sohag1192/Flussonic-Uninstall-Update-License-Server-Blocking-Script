@@ -36,7 +36,7 @@ sudo service flussonic start
 
 ## 🔐 License Activation
 License keys are listed at:  
-[Flussonic Media Server README](https://github.com/sohag1192/Flussonic-Media-Server?tab=readme-ov-file#active-flussonic-license-key-is-below)
+[Flussonic Media Server README](https://github.com/sohag1192/Flussonic-Media-Servers?tab=readme-ov-file#active-flussonic-license-key-is-below)
 
 ---
 
