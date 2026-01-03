@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Block Flussonic updates and license servers
-# Author: Copilot (clean LF version)
+
 
 echo "🔹 Blocking Flussonic package updates..."
 for pkg in flussonic flussonic-erlang flussonic-transcoder flussonic-transcoder-base flussonic-qsv; do
@@ -35,3 +35,4 @@ for host in "${HOSTS_BLOCK[@]}"; do
 done
 
 echo "✅ Flussonic blocking completed successfully."
+
