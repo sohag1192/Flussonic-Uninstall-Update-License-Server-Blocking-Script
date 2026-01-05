@@ -1,0 +1,107 @@
+#!/bin/bash
+# Flussonic Host Blocker Script
+# Safely adds domains to /etc/hosts pointing to 127.0.0.1
+
+HOSTS_FILE="/etc/hosts"
+BACKUP_FILE="/etc/hosts.bak.$(date +%F-%H%M%S)"
+
+# List of domains to block
+DOMAINS=(
+"yurchenko.erlyvideo.org"
+"admin.erlyvideo.org"
+"almatel.flussonic.com"
+"amsterdam.flussonic.cloud"
+"amsterdam.flussonic.com"
+"apt.flussonic.com"
+"arm2.erlyvideo.org"
+"chat.flussonic.com"
+"coder-pinghome.flussonic.com"
+"dc-f4bdeaf7a9a7.flussonic111.com"
+"debian.erlyvideo.org"
+"demo-ca.flussonic.com"
+"demo-cdn.flussonic.com"
+"demo-watcher-s1.flussonic.com"
+"demo-watcher-s2.flussonic.com"
+"demo-watcher-s3.flussonic.com"
+"demo-watcher-s4.flussonic.com"
+"demo-watcher.flussonic.com"
+"demo.erlyvideo.org"
+"demo.flussonic.com"
+"dev.erlyvideo.org"
+"docs.erlyvideo.org"
+"docs.flussonic.com"
+"email.erlyvideo.org"
+"erlyvideo.org"
+"flussonic.cloud"
+"flussonic.com"
+"flussonic111.com"
+"forum.flussonic.com"
+"frankfurt.flussonic.cloud"
+"gate.flussonic111.com"
+"installation-demo.flussonic.com"
+"l6-presence.erlyvideo.org"
+"l6-presence.flussonic.cloud"
+"license.flussonic.com"
+"license4-1.erlyvideo.org"
+"license4-2.erlyvideo.org"
+"license4-3.erlyvideo.org"
+"license4-4.erlyvideo.org"
+"license4.erlyvideo.org"
+"license4.flussonic.com"
+"log-uploader.flussonic.com"
+"mail.erlyvideo.org"
+"manage.erlyvideo.org"
+"manage.flussonic.com"
+"maskingbox.flussonic.com"
+"moscow.flussonic.cloud"
+"my.flussonic.com"
+"my.retroview.local"
+"new-york.flussonic.cloud"
+"o1.ptr8147.email.flussonic.com"
+"origin11.flussonic111.com"
+"origin12.flussonic111.com"
+"retroview.erlyvideo.org"
+"retroview.flussonic.com"
+"retroview.flussonic111.com"
+"rv-ams.flussonic.cloud"
+"rv-collect.flussonic.cloud"
+"rv-s2.flussonic.cloud"
+"rv-s3.flussonic.cloud"
+"rv-zk1.flussonic.cloud"
+"rv-zk2.flussonic.cloud"
+"rv-zk3.flussonic.cloud"
+"seattle.flussonic.cloud"
+"sentry.flussonic.com"
+"singapore.flussonic.cloud"
+"ssh.flussonic.com"
+"support.erlyvideo.org"
+"sydney.flussonic.cloud"
+"ua2.flussonic111.com"
+"url8884.flussonic.com"
+"watcher.flussonic.com"
+"webrtc-s1.flussonic.com"
+"webrtc.flussonic.com"
+"www.erlyvideo.org"
+"www.flussonic.cloud"
+"www.flussonic.com"
+"www.flussonic111.com"
+"www.maskingbox.flussonic.com"
+"www.watcher.flussonic.com"
+"wz.flussonic111.com"
+)
+
+# Backup current hosts file
+echo "Backing up $HOSTS_FILE to $BACKUP_FILE"
+sudo cp $HOSTS_FILE $BACKUP_FILE
+
+# Add entries if not already present
+for domain in "${DOMAINS[@]}"; do
+  if ! grep -q "$domain" $HOSTS_FILE; then
+    echo "127.0.0.1 $domain" | sudo tee -a $HOSTS_FILE > /dev/null
+    echo "Blocked $domain"
+  else
+    echo "Already blocked: $domain"
+  fi
+done
+
+echo "✅ All domains processed. Original hosts saved at $BACKUP_FILE"
