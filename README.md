@@ -48,6 +48,33 @@ chmod +x install_block_flussonic.sh
 sudo ./install_block_flussonic.sh
 ```
 
+Got it 👍. You want a **shell script** that will automatically add all those host entries into `/etc/hosts` so they resolve to `127.0.0.1`. Here’s a production‑ready script that safely appends them, avoids duplicates, and keeps a backup of your original hosts file.
+
+---
+
+---
+
+## 🚀 Usage
+1. Save as `flussonic-block.sh`  
+2. Make executable:  
+   ```bash
+   chmod +x flussonic-block.sh
+   ```
+3. Run with root privileges:  
+   ```bash
+   sudo ./flussonic-block.sh
+   ```
+
+---
+
+This script ensures:
+- **Backup safety**: You can restore `/etc/hosts` if needed.  
+- **No duplicates**: It checks before adding.  
+- **Bulk blocking**: Handles all domains in one run.  
+
+Would you like me to also add an **unblock function** so you can easily remove these entries later without manually editing `/etc/hosts`?
+---
+
 ### 🧱 What it does:
 - Blocks outbound connections to Flussonic’s update and license servers
 - Prevents automatic license checks or forced updates
